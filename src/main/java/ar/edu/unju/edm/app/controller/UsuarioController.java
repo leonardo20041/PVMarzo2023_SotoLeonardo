@@ -43,6 +43,6 @@ public class UsuarioController {
 	public String guardar(Usuario usuario)
 	{
 		usuarioDao.save(usuario);
-		return "redirect:/form";
+		return "redirect:/listarUsuarios";
 	}
 }

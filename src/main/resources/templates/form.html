@@ -44,7 +44,7 @@
 						<label for="fechaNacimiento" class="col-sm-2 col-form-label">Fecha Nacimiento</label>
 						
 						<div class="col-sm-6">
-							<input type="date" th:field="*{fechaNacimiento}" class="form-control" th:errorclass="'form-control alert-danger'"/>
+							<input type="text" th:field="*{fechaNacimiento}" class="form-control" th:errorclass="'form-control alert-danger'"/>
 							<small th:if="${#fields.hasErrors('fechaNacimiento')}" th:errors="*{fechaNacimiento}" class="form-text text-danger"></small>
 						</div>
 					</div>

@@ -27,8 +27,7 @@ public class IUsuarioDAOImp implements IUsuarioDAO {
 	@Override
 	@Transactional
 	public void save(Usuario usuario) {
-		em.persist(usuario);
-		
+		em.persist(usuario);		
 	}
 
 }

@@ -3,17 +3,22 @@ package ar.edu.unju.edm.app.model;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
-//@Component
+@Component
 @Entity
 @Table(name = "usuarios")
 public class Usuario implements Serializable {
@@ -21,27 +26,31 @@ public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NotNull
+	@Min(value=1000000, message="El DNI debe ser mayor que un millon")
+	@Max(value=99999999, message="El DNI debe ser menor que 100 millones")
 	private Long dni;
 	
-//	@NotEmpty
+	@NotEmpty
 	private String nombre;
 	
-//	@NotEmpty
+	@NotEmpty
 	private String apellido;
 	
-//	@NotNull
+	@NotNull
+	@Column(name = "fecha_nacimiento")
+	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	private LocalDate fechaNacimiento;
 	
-//	@NotEmpty
+	@NotEmpty
 	private String nacionalidad;
 	
-//	@NotEmpty
+	@NotEmpty
 	private String contrasena;
 	
-//	@NotEmpty
+	@NotEmpty
 	private String tipoUsuario;
-	
+
 	
 	public Long getDni() {
 		return dni;
