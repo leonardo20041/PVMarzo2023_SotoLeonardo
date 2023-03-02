@@ -27,7 +27,21 @@ public class IUsuarioDAOImp implements IUsuarioDAO {
 	@Override
 	@Transactional
 	public void save(Usuario usuario) {
-		em.persist(usuario);		
+		
+		if(usuario.getDni() != null && usuario.getDni() > 0)
+		{
+			em.merge(usuario);	//actualizar
+		}
+		else
+		{
+			em.persist(usuario);
+		}
+				
+	}
+
+	@Override
+	public Usuario findOne(Long dni) {		
+		return em.find(Usuario.class, dni);
 	}
 
 }

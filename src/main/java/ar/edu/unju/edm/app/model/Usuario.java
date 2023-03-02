@@ -14,6 +14,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
@@ -32,9 +33,11 @@ public class Usuario implements Serializable {
 	private Long dni;
 	
 	@NotEmpty
+	@Size(min = 3, max = 12)
 	private String nombre;
 	
 	@NotEmpty
+	@Size(min = 3, max = 12)
 	private String apellido;
 	
 	@NotNull
