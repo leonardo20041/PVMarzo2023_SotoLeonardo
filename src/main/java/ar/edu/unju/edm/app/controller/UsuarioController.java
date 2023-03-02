@@ -14,11 +14,15 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import ar.edu.unju.edm.app.dao.IUsuarioDAO;
 import ar.edu.unju.edm.app.model.Usuario;
+import ar.edu.unju.edm.app.service.IUsuarioService;
 
 @Controller
 @SessionAttributes("cliente")	//en una peticion GET obtiene usuario y todos los datos persisten hasta que se envie al metodo guardar
 public class UsuarioController {
 
+	@Autowired
+	private IUsuarioService usuarioService;
+	
 	@Autowired
 	private IUsuarioDAO usuarioDao;
 	
@@ -33,7 +37,7 @@ public class UsuarioController {
 	public String listarUsuarios(Model model)
 	{
 		model.addAttribute("titulo", "Listado de Huespedes Registrados");
-		model.addAttribute("usuarios", usuarioDao.findAll());
+		model.addAttribute("usuarios", usuarioService.findAll());
 		return "listarUsuarios";
 	}
 
@@ -43,6 +47,7 @@ public class UsuarioController {
 		Usuario usuario = new Usuario();
 		model.addAttribute("usuario", usuario);
 		model.addAttribute("titulo", "Formulario de Usuario");
+		model.addAttribute("botonSubmit", "Crear Usuario");
 		return "form";
 	}
 	
@@ -52,10 +57,18 @@ public class UsuarioController {
 		if(result.hasErrors())
 		{
 			model.addAttribute("titulo", "Formulario de Usuario");
+			
+			if(usuario.getDni() != null) {
+				model.addAttribute("botonSubmit", "Guardar Usuario");
+			}
+			else if(usuario.getDni() == null) {
+				model.addAttribute("botonSubmit", "Crear Usuario");
+			}
+			
 			return "form";
 		}
 		
-		usuarioDao.save(usuario);
+		usuarioService.save(usuario);
 		status.setComplete();
 		return "redirect:/listarUsuarios";
 	}
@@ -67,7 +80,7 @@ public class UsuarioController {
 		
 		if(dni > 0)
 		{
-			usuario = usuarioDao.findOne(dni);
+			usuario = usuarioService.findOne(dni);
 		}
 		else
 		{
@@ -76,6 +89,18 @@ public class UsuarioController {
 		
 		model.addAttribute("usuario", usuario);
 		model.addAttribute("titulo", "Editar Usuario");
+		model.addAttribute("botonSubmit", "Guardar Usuario");
 		return "form";
+	}
+	
+	@GetMapping("/eliminar/{dni}")
+	public String eliminar(@PathVariable(name = "dni") Long dni, Model model)
+	{
+		if(dni > 0)
+		{
+			usuarioService.delete(dni);
+		}
+		
+		return "redirect:/listarUsuarios";
 	}
 }

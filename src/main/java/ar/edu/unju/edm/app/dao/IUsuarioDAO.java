@@ -1,12 +1,9 @@
 package ar.edu.unju.edm.app.dao;
 
-import java.util.List;
+import org.springframework.data.repository.CrudRepository;
 
 import ar.edu.unju.edm.app.model.Usuario;
 
-public interface IUsuarioDAO {
-
-	public List<Usuario> findAll();
-	public void save(Usuario usuario);
-	public Usuario findOne(Long dni);
+public interface IUsuarioDAO extends CrudRepository<Usuario, Long> {
+	
 }

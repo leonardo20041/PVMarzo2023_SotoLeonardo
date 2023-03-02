@@ -27,6 +27,7 @@
 							<th>Constraseña</th>
 							<th>Tipo Usuario</th>
 							<th>Editar</th>
+							<th>Eliminar</th>
 						</tr>
 					</thead>
 					
@@ -40,6 +41,7 @@
 							<td th:text="${usuario.contrasena}"></td>
 							<td th:text="${usuario.tipoUsuario}"></td>
 							<td><a th:href="@{/form/} + ${usuario.dni}" class="btn btn-primary btn-xs">Editar</a></td>
+							<td><a th:href="@{/eliminar/} + ${usuario.dni}" class="btn btn-danger btn-xs" onclick="return confirm('Seguro que quiere eliminar?')">Eliminar</a></td>
 						</tr>
 					</tbody>
 				</table>
