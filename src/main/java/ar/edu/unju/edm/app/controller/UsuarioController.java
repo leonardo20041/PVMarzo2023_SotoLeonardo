@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import ar.edu.unju.edm.app.dao.IUsuarioDAO;
 import ar.edu.unju.edm.app.model.Usuario;
 import ar.edu.unju.edm.app.service.IUsuarioService;
 
@@ -22,9 +22,6 @@ public class UsuarioController {
 
 	@Autowired
 	private IUsuarioService usuarioService;
-	
-	@Autowired
-	private IUsuarioDAO usuarioDao;
 	
 	@GetMapping({"/", "/index", ""})
 	public String index(Model model)
@@ -52,38 +49,40 @@ public class UsuarioController {
 	}
 	
 	@PostMapping("/form")
-	public String guardar(@Valid Usuario usuario, BindingResult result, Model model, SessionStatus status)
+	public String guardar(@Valid Usuario usuario, BindingResult result, Model model, SessionStatus status, RedirectAttributes flash)
 	{
 		if(result.hasErrors())
 		{
 			model.addAttribute("titulo", "Formulario de Usuario");
 			
-			if(usuario.getDni() != null) {
-				model.addAttribute("botonSubmit", "Guardar Usuario");
-			}
-			else if(usuario.getDni() == null) {
-				model.addAttribute("botonSubmit", "Crear Usuario");
-			}
-			
+			String boton = (usuario.getDni() != null)? "Guardar Usuario" : "Crear Usuario";
+			model.addAttribute("botonSubmit", boton);						
 			return "form";
 		}
 		
+		String mensajeFlash = (usuario.getDni() != 0)? "Usuario creado con exito" : "Usuario editado con exito";
 		usuarioService.save(usuario);
-		status.setComplete();
+		status.setComplete();		
+		flash.addFlashAttribute("success", mensajeFlash);
 		return "redirect:/listarUsuarios";
 	}
 	
 	@GetMapping("/form/{dni}")
-	public String editar(@PathVariable(name = "dni") Long dni, Model model)
+	public String editar(@PathVariable(name = "dni") Long dni, Model model, RedirectAttributes flash)
 	{
 		Usuario usuario = null;
 		
 		if(dni > 0)
 		{
 			usuario = usuarioService.findOne(dni);
+			if(usuario == null) {
+				flash.addFlashAttribute("error", "El DNI del usuario no existe en la Base de Datos");
+				return "redirect:/listarUsuarios";
+			}
 		}
 		else
 		{
+			flash.addFlashAttribute("error", "El DNI del usuario no puede ser cero");
 			return "redirect:/listarUsuarios";
 		}
 		
@@ -94,11 +93,12 @@ public class UsuarioController {
 	}
 	
 	@GetMapping("/eliminar/{dni}")
-	public String eliminar(@PathVariable(name = "dni") Long dni, Model model)
+	public String eliminar(@PathVariable(name = "dni") Long dni, Model model, RedirectAttributes flash)
 	{
 		if(dni > 0)
 		{
 			usuarioService.delete(dni);
+			flash.addFlashAttribute("success", "Usuario eliminado con éxito");
 		}
 		
 		return "redirect:/listarUsuarios";

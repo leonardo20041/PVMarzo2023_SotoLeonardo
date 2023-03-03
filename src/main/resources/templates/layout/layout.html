@@ -35,7 +35,7 @@
 	      </li>
 	      
 	      <li class="nav-item">
-	        <a class="nav-link" th:href="@{/}">Casa / Departamento</a>
+	        <a class="nav-link" th:href="@{/}">Casa/Departamento</a>
 	      </li>
 	      
 	      <li class="nav-item">
@@ -43,39 +43,38 @@
 	      </li>
 	      
 	      <li class="nav-item">
-	        <a class="nav-link" th:href="@{/form}" sec:authorize="hasRole('ROLE_ADMIN')">Crear Usuarios</a>
+	        <a class="nav-link" th:href="@{/form}">Crear Usuarios</a>
+<!-- 	        <a class="nav-link" th:href="@{/form}" sec:authorize="hasRole('ROLE_ADMIN')">Crear Usuarios</a> -->
 	      </li>
 	      
 	    </ul>
 	    
 	    <ul class="navbar-var navbar-right">
-<!-- 	    	<li sec:authorize="!isAuthenticated()"><a class="btn btn-outline-primary" th:href="@{/login}">Sign In</a></li> -->
+	    	<li sec:authorize="!isAuthenticated()"><a class="btn btn-outline-primary" th:href="@{/login}">Sign In</a></li>
 	    	<!-- Si no esta autenticado (Si NO ha iniciado sesion), va a mostrar Sign In -->
 	    	
-<!-- 	    	<li sec:authorize="isAuthenticated()" class="dropdown"> Si YA inicio sesion, va a mostrar el Sign Out -->
-<!-- 			  <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> -->
-<!-- 			    <span sec:authentication="name"></span> -->
-<!-- 			  </a> -->
-			
-<!-- 			  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink"> -->
+	    	<li sec:authorize="isAuthenticated()" class="dropdown"> <!-- Si YA inicio sesion, va a mostrar el Sign Out -->
+			  <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			    <span sec:authentication="name"></span>
+			  </a>
+				
+			  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 			  
-<!-- 			    <form id="logoutForm" th:action="@{/logout}" method="post"> -->
-<!-- 			    							 onclickEnvia el form hacia la ruta /logout con el method post y con el token para cerrar sesion -->
-<!-- 			    	<button class="dropdown-item" onclick="document.getElementById('logoutForm').submit();" type="submit">Sign Out</button> -->
-<!--  			    	<input type="hidden" th:name="${_crsf.parameterName}" th:value="${_csrf.token}"> -->
+			    <form id="logoutForm" th:action="@{/logout}" method="post">
+<!-- 			    							 onclick Envia el form hacia la ruta /logout con el method post y con el token para cerrar sesion -->
+			    	<button class="dropdown-item" onclick="document.getElementById('logoutForm').submit();" type="submit">Sign Out</button>
  			    	 
-<!-- 			    </form> -->
+			    </form>
 			    
-<!-- 			  </div> -->
+			  </div>
 			  
-<!-- 			</li>	    	 -->
+			</li>	    	
 	    	
 	    </ul>
 	    
 	  </div>
 	</nav>
 	
-<!-- 	Mensajes flash, un div por cada mensaje -->
 	<div class="alert alert-success" th:if="${success != null}" th:text="${success}"></div>
 	<div class="alert alert-danger" th:if="${error != null}" th:text="${error}"></div>
 	<div class="alert alert-warning" th:if="${warning != null}" th:text="${warning}"></div>
@@ -83,7 +82,9 @@
 </header>
 
 <!-- Contenido principal -->
-<div class="container"></div>
+<div class="container">
+	
+</div>
 
 <footer th:fragment="footer" class="container">
 	<hr/>

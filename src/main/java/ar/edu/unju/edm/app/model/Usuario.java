@@ -30,11 +30,11 @@ public class Usuario implements Serializable {
 	private Long dni;
 	
 	@NotEmpty
-	@Size(min = 3, max = 12)
+	@Size(min = 3, max = 15)
 	private String nombre;
 	
 	@NotEmpty
-	@Size(min = 3, max = 12)
+	@Size(min = 3, max = 15)
 	private String apellido;
 	
 	@NotNull
