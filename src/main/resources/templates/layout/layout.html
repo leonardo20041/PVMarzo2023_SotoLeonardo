@@ -44,18 +44,18 @@
 	      
 	      <li class="nav-item">
 	        <a class="nav-link" th:href="@{/form}" sec:authorize="hasRole('ROLE_ADMIN')">Crear Usuarios</a>
-<!-- 	        <a class="nav-link" th:href="@{/form}" sec:authorize="hasRole('ROLE_ADMIN')">Crear Usuarios</a> -->
 	      </li>
 	      
 	    </ul>
 	    
 	    <ul class="navbar-var navbar-right">
 	    	<li sec:authorize="!isAuthenticated()"><a class="btn btn-outline-primary" th:href="@{/login}">Sign In</a></li>
-	    	<!-- Si NO ha iniciado sesion, va a mostrar Sign In -->
 	    	
-	    	<li sec:authorize="isAuthenticated()" class="dropdown"> <!-- Si YA inicio sesion, va a mostrar el Sign Out -->
+	    	
+	    	<li sec:authorize="isAuthenticated()" class="dropdown">
 			  <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			    <span sec:authentication="name"></span>
+			  	
+			  	<span sec:authentication="name"></span>
 			  </a>
 				
 			  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">

@@ -25,8 +25,8 @@ public class Usuario implements Serializable {
 
 	@Id
 	@NotNull
-	@Min(value=1000000, message="El DNI debe ser mayor que un millon")
-	@Max(value=99999999, message="El DNI debe ser menor que 100 millones")
+	@Min(value = 1000000, message = "El DNI debe ser mayor que un millon")
+	@Max(value = 99999999, message = "El DNI debe ser menor que 100 millones")
 	private Long dni;
 	
 	@NotEmpty
