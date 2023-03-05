@@ -39,11 +39,11 @@
 	      </li>
 	      
 	      <li class="nav-item">
-	        <a class="nav-link" th:href="@{/listarUsuarios}">Usuarios</a>
+	        <a class="nav-link" th:href="@{/listarUsuarios}" sec:authorize="hasRole('ROLE_ADMIN')">Usuarios</a>
 	      </li>
 	      
 	      <li class="nav-item">
-	        <a class="nav-link" th:href="@{/form}">Crear Usuarios</a>
+	        <a class="nav-link" th:href="@{/form}" sec:authorize="hasRole('ROLE_ADMIN')">Crear Usuarios</a>
 <!-- 	        <a class="nav-link" th:href="@{/form}" sec:authorize="hasRole('ROLE_ADMIN')">Crear Usuarios</a> -->
 	      </li>
 	      
@@ -51,7 +51,7 @@
 	    
 	    <ul class="navbar-var navbar-right">
 	    	<li sec:authorize="!isAuthenticated()"><a class="btn btn-outline-primary" th:href="@{/login}">Sign In</a></li>
-	    	<!-- Si no esta autenticado (Si NO ha iniciado sesion), va a mostrar Sign In -->
+	    	<!-- Si NO ha iniciado sesion, va a mostrar Sign In -->
 	    	
 	    	<li sec:authorize="isAuthenticated()" class="dropdown"> <!-- Si YA inicio sesion, va a mostrar el Sign Out -->
 			  <a class="btn btn-outline-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -81,17 +81,15 @@
 	<div class="alert alert-info" th:if="${info != null}" th:text="${info}"></div>
 </header>
 
-<!-- Contenido principal -->
-<div class="container">
-	
-</div>
+	<div class="container">
+		
+	</div>
 
 <footer th:fragment="footer" class="container">
 	<hr/>
 	<img th:src="@{/img/hotel.png}" alt="Google logo" style="width: 100px;"/>
 	
-	<!-- Nombre del usuario logueado y sus roles -->
-	<p sec:authorize="isAuthenticated()">	<!-- El metodo valida si el usuario este autenticado -->
+	<p sec:authorize="isAuthenticated()">
 		Usuario Loggeado: <span sec:authentication="name"></span> | Roles: <span sec:authentication="principal.authorities"></span>
 	</p>
 	

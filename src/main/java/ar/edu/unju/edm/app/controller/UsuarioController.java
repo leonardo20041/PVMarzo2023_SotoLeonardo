@@ -1,8 +1,14 @@
 package ar.edu.unju.edm.app.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestWrapper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,19 +26,36 @@ import ar.edu.unju.edm.app.service.IUsuarioService;
 @SessionAttributes("cliente")	//en una peticion GET obtiene usuario y todos los datos persisten hasta que se envie al metodo guardar
 public class UsuarioController {
 
+	protected final Log logger = LogFactory.getLog(this.getClass());
+	
 	@Autowired
 	private IUsuarioService usuarioService;
 	
 	@GetMapping({"/", "/index", ""})
-	public String index(Model model)
-	{
+	public String index(Model model, HttpServletRequest request)
+	{		
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		
+		if(auth != null) {
+			logger.info("Usuario autenticado, username: ".concat(auth.getName()));
+		}
+		
+		if(request.isUserInRole("ROLE_ADMIN")) {
+			logger.info("Usando SecurityContextHolderAwareRequestWrapper: Hola ".concat(auth.getName()).concat(" tenes acceso"));
+		}
+		
+		else {
+			logger.info("Hola ".concat(auth.getName()).concat(" NO tenes acceso"));
+		}
+		
+		
 		model.addAttribute("titulo", "Hotel Spring");
 		return "index";
 	}
 	
 	@GetMapping("/listarUsuarios")
 	public String listarUsuarios(Model model)
-	{
+	{	
 		model.addAttribute("titulo", "Listado de Huespedes Registrados");
 		model.addAttribute("usuarios", usuarioService.findAll());
 		return "listarUsuarios";
