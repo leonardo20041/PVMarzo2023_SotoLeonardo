@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title th:text="'Hotel Spring ARG'"></title>
 	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+	<link rel="stylesheet" href="/css/styles.css">
 </head>
 
 <body>
@@ -27,15 +28,11 @@
 	      </li>
 	      
 	      <li class="nav-item">
-	        <a class="nav-link" th:href="@{/}">Todos</a>
+	        <a class="nav-link" th:href="@{/listarRegulares}">Habitaciones</a>
 	      </li>
 	      
 	      <li class="nav-item">
-	        <a class="nav-link" th:href="@{/}">Hotel</a>
-	      </li>
-	      
-	      <li class="nav-item">
-	        <a class="nav-link" th:href="@{/}">Casa/Departamento</a>
+	        <a class="nav-link" th:href="@{/listarPremiums}">Habitaciones Premium</a>
 	      </li>
 	      
 	      <li class="nav-item">
@@ -44,7 +41,7 @@
 	      
 	      <li class="nav-item">
 	        <a class="nav-link" th:href="@{/form}" sec:authorize="hasRole('ROLE_ADMIN')">Crear Usuarios</a>
-	      </li>
+	      </li>	      
 	      
 	    </ul>
 	    

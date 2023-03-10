@@ -2,11 +2,14 @@ package ar.edu.unju.edm.app.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
@@ -39,8 +42,9 @@ public class Usuario implements Serializable {
 	
 	@NotNull
 	@Column(name = "fecha_nacimiento")
+	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy/MM/dd")
-	private LocalDate fechaNacimiento;
+	private Date fechaNacimiento;
 	
 	@NotEmpty
 	private String nacionalidad;
@@ -70,12 +74,20 @@ public class Usuario implements Serializable {
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
-	public LocalDate getFechaNacimiento() {
+//	public LocalDate getFechaNacimiento() {
+//		return fechaNacimiento;
+//	}
+//	public void setFechaNacimiento(LocalDate fechaNacimiento) {
+//		this.fechaNacimiento = fechaNacimiento;
+//	}
+	
+	public Date getFechaNacimiento() {
 		return fechaNacimiento;
 	}
-	public void setFechaNacimiento(LocalDate fechaNacimiento) {
+	public void setFechaNacimiento(Date fechaNacimiento) {
 		this.fechaNacimiento = fechaNacimiento;
 	}
+	
 	public String getNacionalidad() {
 		return nacionalidad;
 	}
