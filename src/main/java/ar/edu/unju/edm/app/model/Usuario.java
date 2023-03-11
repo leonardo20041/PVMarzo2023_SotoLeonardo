@@ -1,7 +1,6 @@
 package ar.edu.unju.edm.app.model;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -54,7 +53,6 @@ public class Usuario implements Serializable {
 	
 	@NotEmpty
 	private String tipoUsuario;
-
 	
 	public Long getDni() {
 		return dni;
@@ -74,12 +72,6 @@ public class Usuario implements Serializable {
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
-//	public LocalDate getFechaNacimiento() {
-//		return fechaNacimiento;
-//	}
-//	public void setFechaNacimiento(LocalDate fechaNacimiento) {
-//		this.fechaNacimiento = fechaNacimiento;
-//	}
 	
 	public Date getFechaNacimiento() {
 		return fechaNacimiento;

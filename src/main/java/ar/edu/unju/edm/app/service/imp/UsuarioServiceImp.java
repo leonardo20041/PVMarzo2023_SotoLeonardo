@@ -2,6 +2,7 @@ package ar.edu.unju.edm.app.service.imp;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -22,6 +23,15 @@ public class UsuarioServiceImp implements IUsuarioService {
 //	@Override
 //	@Transactional(readOnly = true)
 //	public List<Usuario> findAll() {	
+//		List<Usuario> copia = new ArrayList<>();
+//		List<Usuario> resultado = new ArrayList<>();
+//		copia = (List<Usuario>) usuarioDao.findAll();
+//		
+//		for(int i=0; i<copia.size(); i++)
+//		{
+//			if(copia.get(i).getDni() == dni)
+//		}
+//		
 //		return (List<Usuario>) usuarioDao.findAll();
 //	}
 	
@@ -54,16 +64,6 @@ public class UsuarioServiceImp implements IUsuarioService {
 	@Transactional
 	public void delete(Long dni) {
 		usuarioDao.deleteById(dni);
-	}
-	
-	@Override
-	public boolean isNumeric(String cadena) {
-		try {
-			Long.parseLong(cadena);
-			return true;
-		} catch (NumberFormatException nfe){
-			return false;
-		}
 	}
 
 	@Override
@@ -100,5 +100,73 @@ public class UsuarioServiceImp implements IUsuarioService {
 			}			
 		}
 		return null;
+	}
+
+	
+	@Override
+	public List<Usuario> findAllByDni2(String dniSt) {
+		Long dni = Long.parseLong(dniSt);
+		System.out.println(dni);
+		List<Usuario> copia = new ArrayList<>();
+		List<Usuario> encontrado = new ArrayList<>();
+		
+		copia = (List<Usuario>) usuarioDao.findAll();
+		
+		for(int i=0; i<copia.size(); i++)
+		{
+			if(copia.get(i).getDni() == dni)
+			{
+				encontrado.add(copia.get(i));
+				System.out.println(encontrado.get(i).getDni());
+			}
+		}
+		return encontrado;
+	}
+
+	@Override
+	public List<Usuario> findAllByNacionalidad2(String nacionalidadSt) {
+		List<Usuario> copia = new ArrayList<>();
+		List<Usuario> encontrado = new ArrayList<>();
+		
+		copia = (List<Usuario>) usuarioDao.findAll();
+		
+		for(int i=0; i<copia.size(); i++)
+		{
+			if(copia.get(i).getNacionalidad() == nacionalidadSt)
+			{
+				encontrado.add(copia.get(i));
+				System.out.println("ssss: " + encontrado.get(i).getNacionalidad());
+			}
+		}
+		
+		return encontrado;
+	}
+
+	@Override
+	public List<Usuario> findAllByFechaNacimiento2(String nacimientoSt) {
+		
+		SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
+		Date nacimiento = null;
+		try {
+				nacimiento = formato.parse(nacimientoSt);
+			} 
+		catch (ParseException e) {
+				e.printStackTrace();
+			}
+		
+		List<Usuario> copia = new ArrayList<>();
+		List<Usuario> encontrado = new ArrayList<>();
+		
+		copia = (List<Usuario>) usuarioDao.findAll();
+		
+		for(int i=0; i<copia.size(); i++)
+		{
+			if(copia.get(i).getFechaNacimiento() == nacimiento)
+			{
+				encontrado.add(copia.get(i));
+			}
+		}
+		
+		return encontrado;
 	}
 }

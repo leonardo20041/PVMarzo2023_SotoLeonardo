@@ -1,7 +1,6 @@
 package ar.edu.unju.edm.app.model;
 
 import java.io.Serializable;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -33,6 +32,7 @@ public class Habitacion implements Serializable {
 	@NotEmpty
 	private String estado;
 	
+	@NotEmpty
 	private String foto;
 	
 	public Long getCodigo() {

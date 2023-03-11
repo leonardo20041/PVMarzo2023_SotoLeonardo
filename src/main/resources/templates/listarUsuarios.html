@@ -46,18 +46,18 @@
 						</div>
 						
 						<div class="form-group mx-sm-3 mb-2">
-							<input type="text" name="palabraDni" class="form-control" id="palabraDni" th:value="${palabraDni}" placeholder="Por DNI" />														
+							<input type="text" name="dniSt" class="form-control" id="dniSt" th:value="${dniSt}" placeholder="Por DNI" />														
 						</div>
 						
 						<div class="form-group mx-sm-3 mb-2">
-							<select name="palabraNacion" id="palabraNacion" th:value="${palabraNacion}" class="form-control">
+							<select name="nacionalidadSt" id="nacionalidadSt" th:value="${nacionalidadSt}" class="form-control">
 								<option value="">Nacionalidad</option>
 								<option th:each="nacionalidad: ${nacionalidades}" th:text="${nacionalidad}" th:value="${nacionalidad}"></option>
 							</select>														
 						</div>
 						
 						<div class="form-group mx-sm-3 mb-2">
-							<input type="text" name="palabraNacimiento" class="form-control" id="palabraNacimiento" th:value="${palabraNacimiento}" placeholder="Por Fecha Nacimiento" />														
+							<input type="text" name="nacimientoSt" class="form-control" id="nacimientoSt" th:value="${nacimientoSt}" placeholder="Por Fecha Nacimiento" />														
 						</div>
 												
 							<input type="submit" class="btn btn-info mb-2" value="Buscar">		
@@ -81,7 +81,6 @@
 							<th>Apellido</th>
 							<th>Fecha Nacimiento</th>
 							<th>Nacionalidad</th>
-<!-- 							<th>Constraseña</th> -->
 							<th>Tipo Usuario</th>
 							<th>Editar</th>
 							<th>Eliminar</th>
@@ -89,14 +88,13 @@
 					</thead>
 					
 					<tbody>					
-<!-- 					agregar th:if para buscar con el objeto palabraClave -->
-						<tr th:each="usuario: ${usuarios}" th:if="${usuario.tipoUsuario == 'HUESPED' or palabraFiltrada == usuario.dni or palabraFiltrada == usuario.nacionalidad or palabraFiltrada == usuario.fechaNacimiento}">
+						<tr th:each="usuario: ${usuarios}" th:if="${usuario.tipoUsuario == 'HUESPED'}">
+<!-- 						<tr th:each="usuario: ${usuarios}" th:if="${usuario.tipoUsuario == 'HUESPED' or palabraFiltrada == usuario.dni or palabraFiltrada == usuario.nacionalidad or palabraFiltrada == usuario.fechaNacimiento}"> -->
 							<td th:text="${usuario.dni}"></td>
 							<td th:text="${usuario.nombre}"></td>
 							<td th:text="${usuario.apellido}"></td>
 							<td th:text="${usuario.fechaNacimiento}"></td>
 							<td th:text="${usuario.nacionalidad}"></td>
-<!-- 							<td th:text="${usuario.contrasena}"></td> -->
 							<td th:text="${usuario.tipoUsuario}"></td>
 							<td><a th:href="@{/form/} + ${usuario.dni}" class="btn btn-primary btn-xs">Editar</a></td>
 							<td><a th:href="@{/eliminar/} + ${usuario.dni}" class="btn btn-danger btn-xs" onclick="return confirm('Seguro que quiere eliminar?')">Eliminar</a></td>
