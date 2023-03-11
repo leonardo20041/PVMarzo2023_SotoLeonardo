@@ -9,3 +9,11 @@ INSERT INTO users (dni, contrasena, enabled) VALUES('45372773', '$2a$10$oj.lSOAs
 INSERT INTO roles (user_dni, rol) VALUES('45372773', 'ROLE_HUESPED');
 INSERT INTO roles (user_dni, rol) VALUES('45372772', 'ROLE_HUESPED');
 INSERT INTO roles (user_dni, rol) VALUES('45372772', 'ROLE_ADMIN');
+
+/* Precargar las habitaciones */
+INSERT INTO habitaciones (caracteristica, tipo_habitacion, cama, estado, foto) VALUES('Habitacion Regular 1', 'Regular', 'Simple', 'Libre', '/img/habRegular1.jpg')
+INSERT INTO habitaciones (caracteristica, tipo_habitacion, cama, estado, foto) VALUES('Habitacion Regular 2', 'Regular', 'Doble', 'Libre', '/img/HabRegular2.jpg')
+INSERT INTO habitaciones (caracteristica, tipo_habitacion, cama, estado, foto) VALUES('Habitacion Regular 3', 'Regular', 'Simple', 'Ocupada', '/img/habRegular3.jpg')
+INSERT INTO habitaciones (caracteristica, tipo_habitacion, cama, estado, foto) VALUES('Habitacion Premium 1', 'Premium', 'Doble', 'Ocupada', '/img/habPremium1.jpg')
+INSERT INTO habitaciones (caracteristica, tipo_habitacion, cama, estado, foto) VALUES('Habitacion Premium 2', 'Premium', 'Simple', 'Libre', '/img/habPremium2.jpg')
+INSERT INTO habitaciones (caracteristica, tipo_habitacion, cama, estado, foto) VALUES('Habitacion Premium 3', 'Premium', 'Simple', 'Libre', '/img/habPremium3.jpg')

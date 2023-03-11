@@ -22,7 +22,7 @@ public class Habitacion implements Serializable {
 	private Long codigo;
 	
 	@NotEmpty
-	private String caracteristicas;
+	private String caracteristica;
 	
 	@NotEmpty
 	private String tipoHabitacion;
@@ -33,6 +33,7 @@ public class Habitacion implements Serializable {
 	@NotEmpty
 	private String estado;
 	
+	private String foto;
 	
 	public Long getCodigo() {
 		return codigo;
@@ -40,11 +41,11 @@ public class Habitacion implements Serializable {
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
-	public String getCaracteristicas() {
-		return caracteristicas;
+	public String getCaracteristica() {
+		return caracteristica;
 	}
-	public void setCaracteristicas(String caracteristicas) {
-		this.caracteristicas = caracteristicas;
+	public void setCaracteristica(String caracteristica) {
+		this.caracteristica = caracteristica;
 	}
 	public String getTipoHabitacion() {
 		return tipoHabitacion;
@@ -66,5 +67,11 @@ public class Habitacion implements Serializable {
 	}
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+	public String getFoto() {
+		return foto;
+	}
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
 }

@@ -28,11 +28,11 @@
 	      </li>
 	      
 	      <li class="nav-item">
-	        <a class="nav-link" th:href="@{/listarRegulares}">Habitaciones</a>
+	        <a class="nav-link" th:href="@{/listarRegular}">Habitaciones</a>
 	      </li>
 	      
 	      <li class="nav-item">
-	        <a class="nav-link" th:href="@{/listarPremiums}">Habitaciones Premium</a>
+	        <a class="nav-link" th:href="@{/listarPremium}">Habitaciones Premium</a>
 	      </li>
 	      
 	      <li class="nav-item">
@@ -84,7 +84,6 @@
 
 <footer th:fragment="footer" class="container">
 	<hr/>
-	<img th:src="@{/img/hotel.png}" alt="Google logo" style="width: 100px;"/>
 	
 	<p sec:authorize="isAuthenticated()">
 		Usuario Loggeado: <span sec:authentication="name"></span> | Roles: <span sec:authentication="principal.authorities"></span>

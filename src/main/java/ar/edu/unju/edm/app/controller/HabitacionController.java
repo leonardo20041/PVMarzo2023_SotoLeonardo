@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import ar.edu.unju.edm.app.service.IHabitacionService;
 
@@ -13,19 +14,29 @@ public class HabitacionController {
 	@Autowired
 	IHabitacionService habitacionService;
 	
-	@GetMapping("/listarRegulares")
+	@GetMapping("/listarRegular")
 	public String listarRegulares(Model model)
 	{
 		model.addAttribute("titulo", "Habitaciones Regulares Disponibles");
 		model.addAttribute("habitaciones", habitacionService.findAll());
+		model.addAttribute("tipoH", "Regular");
 		return "listarHabitaciones";
 	}
 	
-	@GetMapping("/listarPremiums")
+	@GetMapping("/listarPremium")
 	public String listarPremiums(Model model)
 	{
 		model.addAttribute("titulo", "Habitaciones Premiums Disponibles");
 		model.addAttribute("habitaciones", habitacionService.findAll());
+		model.addAttribute("tipoH", "Premium");
 		return "listarHabitaciones";
+	}
+	
+	@GetMapping("/verDetalles/{codigo}")
+	public String verDetalles(@PathVariable(name = "codigo") Long codigo, Model model)
+	{
+		model.addAttribute("numeroH", "Habitación Número " + codigo);
+		model.addAttribute("habitacionDetalle", habitacionService.findOne(codigo));
+		return "verDetalles";
 	}
 }

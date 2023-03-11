@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container py-4">		
+ 		<h1 th:text="${numeroH}"></h1>
+ 		
+ 		<table class="table">
+			<thead>
+			    <tr>
+				  <th class="text-center">Imagen</th>
+			      <th>Característica</th>
+			      <th>Camas</th>
+			      <th>Reservar</th>
+			    </tr>
+			</thead>
+			<tbody>
+			    <tr th:each="habitacion: ${habitacionDetalle}">
+			    	<td><img th:src="${habitacion.foto}" class="rounded mx-auto d-block img-fluid img-thumbnail" width="400px" height="400px"></td>
+			    	<td th:text="${habitacion.caracteristica}"></td>
+					<td th:text="${habitacion.cama}"></td>
+					<td><a href="#" class="btn btn-success btn-xs" th:if="${habitacion.estado == 'Libre'}">Reservar Habitación</a>
+						<a href="#" class="btn btn-danger btn-xs" th:if="${habitacion.estado != 'Libre'}">Habitación OCUPADA</a></td>					
+			    </tr>
+			</tbody>
+		</table>
+		
+			<a th:href="@{/listar} + ${habitacionDetalle.tipoHabitacion}" class="btn btn-info">Volver</a>
+		
+	</div>
+
+<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

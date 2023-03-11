@@ -7,4 +7,6 @@ import ar.edu.unju.edm.app.model.Habitacion;
 public interface IHabitacionService {
 
 	public List<Habitacion> findAll();
+	public Habitacion findOne(Long codigo);
+	public Habitacion listById(Long codigo);
 }

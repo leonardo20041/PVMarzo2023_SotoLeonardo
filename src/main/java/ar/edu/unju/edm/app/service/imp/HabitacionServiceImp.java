@@ -21,4 +21,14 @@ public class HabitacionServiceImp implements IHabitacionService {
 	public List<Habitacion> findAll() {		
 		return (List<Habitacion>) habitacionDao.findAll();
 	}
+
+	@Override
+	public Habitacion findOne(Long codigo) {
+		return habitacionDao.findById(codigo).orElse(null);
+	}
+
+	@Override
+	public Habitacion listById(Long codigo) {
+		return habitacionDao.findById(codigo).orElse(null);
+	}
 }
