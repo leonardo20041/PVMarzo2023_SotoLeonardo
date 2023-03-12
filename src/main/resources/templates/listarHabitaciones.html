@@ -21,7 +21,7 @@
 					</thead>
 					
 					<tbody>					
-						<tr th:each="habitacion: ${habitaciones}" th:if="${habitacion.tipoHabitacion == tipoH and habitacion.estado == 'Libre'}" sec:authorize="!hasRole('ROLE_ADMIN')"> <!-- "condiciones anidadas" da error -->
+						<tr th:each="habitacion: ${habitaciones}" th:if="${habitacion.tipoHabitacion == tipoH and habitacion.estado == 'Libre'}" sec:authorize="!hasRole('ROLE_ADMIN')">
 							<td><img th:src="${habitacion.foto}" class="rounded mx-auto d-block img-fluid img-thumbnail" width="400px" height="400px"></td>
 							<td th:text="${habitacion.codigo}"></td>
 							<td th:text="${habitacion.caracteristica}"></td>
@@ -29,11 +29,11 @@
 							<td th:text="${habitacion.cama}"></td>
 							<td th:text="${habitacion.estado}"></td>
 							<td><a href="#" class="btn btn-success btn-xs" th:if="${habitacion.estado == 'Libre'}">Reservar Habitación</a>
-								<a href="#" class="btn btn-danger btn-xs" th:if="${habitacion.estado != 'Libre'}">Habitación OCUPADA</a>
+								<a href="#" class="btn btn-danger btn-xs" th:if="${habitacion.estado != 'Libre'}">OCUPADO</a>
 							</td>
 						</tr>
 						
-						<tr th:each="habitacionAd: ${habitaciones}" th:if="${habitacionAd.tipoHabitacion == tipoH}" sec:authorize="hasRole('ROLE_ADMIN')"> <!-- "condiciones anidadas" da error -->
+						<tr th:each="habitacionAd: ${habitaciones}" th:if="${habitacionAd.tipoHabitacion == tipoH}" sec:authorize="hasRole('ROLE_ADMIN')">
 							<td><img th:src="${habitacionAd.foto}" class="rounded mx-auto d-block img-fluid img-thumbnail" width="400px" height="400px"></td>
 							<td th:text="${habitacionAd.codigo}"></td>
 							<td th:text="${habitacionAd.caracteristica}"></td>
@@ -41,7 +41,7 @@
 							<td th:text="${habitacionAd.cama}"></td>
 							<td th:text="${habitacionAd.estado}"></td>
 							<td><a href="#" class="btn btn-success btn-xs" th:if="${habitacionAd.estado == 'Libre'}">Reservar Habitación</a>
-								<a href="#" class="btn btn-danger btn-xs" th:if="${habitacionAd.estado != 'Libre'}">Habitación OCUPADA</a>
+								<a href="#" class="btn btn-danger btn-xs" th:if="${habitacionAd.estado != 'Libre'}">OCUPADO</a>
 							</td>
 						</tr>
 						

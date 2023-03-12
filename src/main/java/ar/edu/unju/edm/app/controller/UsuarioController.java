@@ -127,11 +127,13 @@ public class UsuarioController {
 			model.addAttribute("titulo", "Formulario de Usuario");
 			
 			String boton = (usuario.getDni() != null)? "Guardar Usuario" : "Crear Usuario";
-			model.addAttribute("botonSubmit", boton);						
+			model.addAttribute("botonSubmit", boton);			
+			logger.info("IIIIIIIIIIIIIIIIIIIIIIIIIIFFFFFFFFFFFFF");
 			return "form";
 		}
 		
 		String mensajeFlash = (usuario.getDni() != 0)? "Usuario creado con exito" : "Usuario editado con exito";
+		logger.info("DNI ESSS:" + usuario.getDni());
 		usuarioService.save(usuario);
 		status.setComplete();		
 		flash.addFlashAttribute("success", mensajeFlash);

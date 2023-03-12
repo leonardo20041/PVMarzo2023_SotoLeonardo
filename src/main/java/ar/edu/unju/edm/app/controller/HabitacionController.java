@@ -31,12 +31,4 @@ public class HabitacionController {
 		model.addAttribute("tipoH", "Premium");
 		return "listarHabitaciones";
 	}
-	
-	@GetMapping("/verDetalles/{codigo}")
-	public String verDetalles(@PathVariable(name = "codigo") Long codigo, Model model)
-	{
-		model.addAttribute("numeroH", "Habitación Número " + codigo);
-		model.addAttribute("habitacionDetalle", habitacionService.findOne(codigo));
-		return "verDetalles";
-	}
 }
