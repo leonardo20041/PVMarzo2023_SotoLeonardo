@@ -25,18 +25,6 @@ public class UsuarioServiceImp implements IUsuarioService {
 	public List<Usuario> findAll() {		
 		return (List<Usuario>) usuarioDao.findAll();
 	}
-	
-	@Override
-	@Transactional(readOnly = true)
-	public List<Usuario> findAll(String palabraClave) {	
-		
-		if(palabraClave != null)
-		{
-			return usuarioDao.findByFilter(palabraClave);
-		}
-		
-		return (List<Usuario>) usuarioDao.findAll();
-	}
 
 	@Override
 	@Transactional(readOnly = true)
@@ -59,33 +47,38 @@ public class UsuarioServiceImp implements IUsuarioService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Usuario> findAllByDni(String palabraDni) {
-		if(palabraDni != null)
+	public List<Usuario> findAllByDni(String dniSt) {
+		if(dniSt != null)
 		{
-			return usuarioDao.findByDni(Long.parseLong(palabraDni));	//retorna tipo long
+			try {
+				return usuarioDao.findByDni(Long.parseLong(dniSt));	//retorna tipo long
+			}
+			catch (NumberFormatException e) {				
+				
+			}
 		}
 		return null;
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Usuario> findAllByNacionalidad(String palabraNacion) {
-		if(palabraNacion != null)
+	public List<Usuario> findAllByNacionalidad(String nacionalidadSt) {
+		if(nacionalidadSt != null)
 		{
-			return usuarioDao.findByNacionalidad(palabraNacion); //retorna tipo String
+			return usuarioDao.findByNacionalidad(nacionalidadSt); //retorna tipo String
 		}
 		return null;
 	}
 
 	@Override
 	@Transactional(readOnly = true)
-	public List<Usuario> findAllByFechaNacimiento(String palabraNacimiento) {
-		if(palabraNacimiento != null)
+	public List<Usuario> findAllByFechaNacimiento(String nacimientoSt) {
+		if(nacimientoSt != null)
 		{
 			SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
 			Date dataFormateada;
 			try {
-				dataFormateada = formato.parse(palabraNacimiento);	
+				dataFormateada = formato.parse(nacimientoSt);	
 				return usuarioDao.findByFechaNacimiento(dataFormateada); //retorna tipo Date
 			} 
 			

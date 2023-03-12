@@ -5,10 +5,10 @@
 	<header th:replace="layout/layout :: header"></header>
 
 	<div>		
-<!-- 		<div class="contenedor"> -->
-<!-- 		  <img src="/img/backHotel.jpg" width="1903px" height="865px" align="left"> -->
-<!-- 		  <h1 sec:authorize="!hasRole('ROLE_ADMIN') and hasRole('ROLE_HUESPED')" class="text-center texto-encima">Le damos la bienvenida al Hotel Spring</h1> -->
-<!-- 		</div> -->
+		<div class="contenedor" sec:authorize="!hasRole('ROLE_ADMIN') and hasRole('ROLE_HUESPED')">
+		  <img src="/img/backHotel.jpg" width="1903px" height="865px" align="left">
+		  <h1 class="text-center texto-encima">Le damos la bienvenida al Hotel Spring</h1>
+		</div>
 		
 	</div>
 

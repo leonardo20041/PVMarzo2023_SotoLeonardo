@@ -58,16 +58,21 @@ public class UsuarioController {
 	}
 	
 	@GetMapping("/listarUsuarios")
-	public String listarUsuarios(Model model, @Param("dniSt") String dniSt, @Param("nacionalidadSt") String nacionalidadSt, @Param("nacimientoSt") String nacimientoSt, @Param("pal") String pal)
-	{
-		String palabraFiltrada = null;
-		
+	public String listarUsuarios(Model model, @Param("dniSt") String dniSt, @Param("nacionalidadSt") String nacionalidadSt, @Param("nacimientoSt") String nacimientoSt, RedirectAttributes flash)
+	{	
 		if(dniSt != null)
 		{
 			if(dniSt != "")
 			{
-				System.out.println(dniSt);
-				model.addAttribute("usuarios", usuarioService.findAllByDni(dniSt));			
+				if(usuarioService.findAllByDni(dniSt) != null)
+				{
+					model.addAttribute("usuarios", usuarioService.findAllByDni(dniSt));
+				}
+				else
+				{
+					flash.addFlashAttribute("error", "Tipo de Dato Incorrecto");
+					return "redirect:/listarUsuarios";
+				}
 			}			
 		}
 		
@@ -84,17 +89,23 @@ public class UsuarioController {
 		{
 			if(nacimientoSt != "")
 			{
-				System.out.println(nacimientoSt);			
-				model.addAttribute("usuarios", usuarioService.findAllByFechaNacimiento(nacimientoSt));			
+				if(usuarioService.findAllByFechaNacimiento(nacimientoSt) != null)
+				{			
+					model.addAttribute("usuarios", usuarioService.findAllByFechaNacimiento(nacimientoSt));
+				}
+				else
+				{
+					flash.addFlashAttribute("error", "Formato Incorrecto, intente: 'yyyy/MM/dd'");
+					return "redirect:/listarUsuarios";
+				}
 			}			
 		}
 		else
 		{
-			model.addAttribute("palabraFiltrada", palabraFiltrada);
-			model.addAttribute("usuarios", usuarioService.findAll(palabraFiltrada));
+			model.addAttribute("usuarios", usuarioService.findAll());
 		}
 		
-		model.addAttribute("titulo", "Listado de Huespedes Registrados");				
+		model.addAttribute("titulo", "Listado de Huespedes Registrados");	
 		return "listarUsuarios";
 	}
 	
