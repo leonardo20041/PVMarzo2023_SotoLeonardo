@@ -1,8 +1,6 @@
 package ar.edu.unju.edm.app.controller;
 
-import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -59,44 +57,47 @@ public class UsuarioController {
 		return "index";
 	}
 	
-//	@GetMapping("/listarUsuarios")
-//	public String listarUsuarios(Model model, @Param("palabraDni") Long palabraDni, @Param("palabraNacion") String palabraNacion, @Param("palabraNacimiento") Date palabraNacimiento, @Param("pal") String pal)
-//	{	
-//		String palabraFiltrada = null;
-//			
-//		System.out.println(palabraDni);
-//		System.out.println(palabraNacion);
-//		System.out.println(palabraNacimiento);
-//			
-//		if(palabraDni != null) {
-//			palabraFiltrada = Long.toString(palabraDni);
-//			model.addAttribute("palabraFiltrada", palabraFiltrada);
-//			model.addAttribute("usuarios", usuarioService.findAllByDni(palabraFiltrada));
-//		}
-//		
-//		if(palabraNacion != null) {
-//			model.addAttribute("palabraFiltrada", palabraNacion);
-//			model.addAttribute("usuarios", usuarioService.findAllByNacionalidad(palabraNacion));
-//		}
-//		
-//		if(palabraNacimiento != null) {
-//			
-//			model.addAttribute("palabraFiltrada", palabraFiltrada);
-//			model.addAttribute("usuarios", usuarioService.findAllByNacionalidad(palabraFiltrada));
-////			LocalDate localDate = LocalDate.now();
-////			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-////			palabraFiltrada = localDate.format(formatter);
-//		}
-//		
-//		
-////		if{
-//		model.addAttribute("titulo", "Listado de Huespedes Registrados");
-//		model.addAttribute("palabraFiltrada", palabraFiltrada);
-//		model.addAttribute("usuarios", usuarioService.findAll(palabraFiltrada));
-//		return "listarUsuarios";
-////		}
-//	}
-
+	@GetMapping("/listarUsuarios")
+	public String listarUsuarios(Model model, @Param("dniSt") String dniSt, @Param("nacionalidadSt") String nacionalidadSt, @Param("nacimientoSt") String nacimientoSt, @Param("pal") String pal)
+	{
+		String palabraFiltrada = null;
+		
+		if(dniSt != null)
+		{
+			if(dniSt != "")
+			{
+				System.out.println(dniSt);
+				model.addAttribute("usuarios", usuarioService.findAllByDni(dniSt));			
+			}			
+		}
+		
+		if(nacionalidadSt != null)
+		{
+			if(nacionalidadSt != "") 
+			{
+				model.addAttribute("palabraFiltrada", nacionalidadSt);
+				model.addAttribute("usuarios", usuarioService.findAllByNacionalidad(nacionalidadSt));
+			}			
+		}
+		
+		if(nacimientoSt != null)
+		{
+			if(nacimientoSt != "")
+			{
+				System.out.println(nacimientoSt);			
+				model.addAttribute("usuarios", usuarioService.findAllByFechaNacimiento(nacimientoSt));			
+			}			
+		}
+		else
+		{
+			model.addAttribute("palabraFiltrada", palabraFiltrada);
+			model.addAttribute("usuarios", usuarioService.findAll(palabraFiltrada));
+		}
+		
+		model.addAttribute("titulo", "Listado de Huespedes Registrados");				
+		return "listarUsuarios";
+	}
+	
 	@GetMapping("/form")
 	public String crearUsuarios(Model model)
 	{
@@ -168,121 +169,5 @@ public class UsuarioController {
 	{
 		return Arrays.asList("Argentina", "Bolivia", "Brasil", "Colombia", "Chile", "Ecuador", 
 				"England", "Guatemala", "Mexico", "Paraguay", "Perú", "Uruguay", "Venezuela");
-	}
-	
-//	@GetMapping("/listarUsuarios")
-//	public String listarUsuarios(Model model, @Param("palabraDni") String palabraDni, @Param("palabraNacion") String palabraNacion, @Param("palabraNacimiento") String palabraNacimiento, @Param("pal") String pal)
-//	{	
-//		String palabraFiltrada = null;
-//			
-//		System.out.println("DNI: " + palabraDni);
-//		System.out.println("NACIONALIDAD: " + palabraNacion);
-//		System.out.println("NACIMIENTO: " + palabraNacimiento);
-//		System.out.println("INFORMACION: " + pal);
-//			
-//		if(palabraDni != null || palabraDni != "") {
-//			model.addAttribute("palabraFiltrada", palabraDni);
-//			model.addAttribute("usuarios", usuarioService.findAllByDni(palabraDni));
-//			
-////			model.addAttribute("palabraFiltrada", pal);
-////			model.addAttribute("usuarios", usuarioService.findAllByDni(pal));
-//		}
-//		
-//		if(palabraNacion != null || palabraDni != "") {
-//			model.addAttribute("palabraFiltrada", palabraNacion);
-//			model.addAttribute("usuarios", usuarioService.findAllByNacionalidad(palabraNacion));
-//			
-////			model.addAttribute("palabraFiltrada", pal);
-////			model.addAttribute("usuarios", usuarioService.findAllByNacionalidad(pal));
-//		}
-//		
-//		if(palabraNacimiento != null || palabraDni != "") {
-//			model.addAttribute("palabraFiltrada", palabraNacimiento);
-//			model.addAttribute("usuarios", usuarioService.findAllByNacionalidad(palabraNacimiento));
-//			
-////			model.addAttribute("palabraFiltrada", pal);
-////			model.addAttribute("usuarios", usuarioService.findAllByNacionalidad(pal));
-//			
-////			LocalDate localDate = LocalDate.now();
-////			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-////			palabraFiltrada = localDate.format(formatter);
-//		}
-//		
-//		else {
-//			model.addAttribute("titulo", "Listado de Huespedes Registrados");
-//			model.addAttribute("palabraFiltrada", palabraFiltrada);
-//			model.addAttribute("usuarios", usuarioService.findAll(palabraFiltrada));
-//		}
-//		
-//		model.addAttribute("titulo", "Listado de Huespedes Registrados");
-//		
-//		System.out.println("DNI: " + palabraDni);
-//		System.out.println("NACIONALIDAD: " + palabraNacion);
-//		System.out.println("NACIMIENTO: " + palabraNacimiento);
-//		System.out.println("INFORMACION: " + pal);
-//		
-//		return "listarUsuarios";
-//	}
-	
-	@GetMapping("/listarUsuarios")
-	public String listarUsuarios(Model model, @Param("dniSt") String dniSt, @Param("nacionalidadSt") String nacionalidadSt, @Param("nacimientoSt") String nacimientoSt)
-	{	
-		String palabraFiltrada = null;
-		
-		System.out.println("DNI:" + dniSt);
-		System.out.println("NACIONALIDAD:" + nacionalidadSt);
-		System.out.println("NACIMIENTO:" + nacimientoSt);
-		
-		if(dniSt != null && dniSt != "")
-		{
-			model.addAttribute("palabraFiltrada", dniSt);
-			model.addAttribute("usuarios", usuarioService.findAllByDni2(dniSt));
-			return "listarUsuarios";
-		}
-		
-		else if(nacionalidadSt != null && nacionalidadSt != "")
-		{
-			model.addAttribute("palabraFiltrada", nacionalidadSt);
-			model.addAttribute("usuarios", usuarioService.findAllByNacionalidad2(nacionalidadSt));
-			return "listarUsuarios";
-		}
-		
-		else if(nacimientoSt != null && nacimientoSt != "")
-		{
-			model.addAttribute("palabraFiltrada", nacimientoSt);
-			model.addAttribute("usuarios", usuarioService.findAllByFechaNacimiento2(nacimientoSt));
-			return "listarUsuarios";
-		}
-			
-		
-		//--------------------
-//		if(palabraDni != null || palabraDni != "") {
-//			model.addAttribute("palabraFiltrada", palabraDni);
-//			model.addAttribute("usuarios", usuarioService.findAllByDni(palabraDni));
-//		}
-//		
-//		if(palabraNacion != null || palabraDni != "") {
-//			model.addAttribute("palabraFiltrada", palabraNacion);
-//			model.addAttribute("usuarios", usuarioService.findAllByNacionalidad(palabraNacion));
-//		}
-//		
-//		if(palabraNacimiento != null || palabraDni != "") {
-//			model.addAttribute("palabraFiltrada", palabraNacimiento);
-//			model.addAttribute("usuarios", usuarioService.findAllByNacionalidad(palabraNacimiento));
-//		}
-		
-		else {
-			model.addAttribute("titulo", "Listado de Huespedes Registrados");
-			model.addAttribute("palabraFiltrada", palabraFiltrada);
-			model.addAttribute("usuarios", usuarioService.findAll(palabraFiltrada));
-		}
-		
-		model.addAttribute("titulo", "Listado de Huespedes Registrados");
-		
-		System.out.println("DNI:" + dniSt);
-		System.out.println("NACIONALIDAD:" + nacionalidadSt);
-		System.out.println("NACIMIENTO:" + nacimientoSt);
-		
-		return "listarUsuarios";
 	}
 }

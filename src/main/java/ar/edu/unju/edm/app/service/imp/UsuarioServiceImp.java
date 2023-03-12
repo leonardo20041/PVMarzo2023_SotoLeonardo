@@ -20,20 +20,11 @@ public class UsuarioServiceImp implements IUsuarioService {
 	@Autowired
 	private IUsuarioDAO usuarioDao;
 	
-//	@Override
-//	@Transactional(readOnly = true)
-//	public List<Usuario> findAll() {	
-//		List<Usuario> copia = new ArrayList<>();
-//		List<Usuario> resultado = new ArrayList<>();
-//		copia = (List<Usuario>) usuarioDao.findAll();
-//		
-//		for(int i=0; i<copia.size(); i++)
-//		{
-//			if(copia.get(i).getDni() == dni)
-//		}
-//		
-//		return (List<Usuario>) usuarioDao.findAll();
-//	}
+	@Override
+	@Transactional(readOnly = true)
+	public List<Usuario> findAll() {		
+		return (List<Usuario>) usuarioDao.findAll();
+	}
 	
 	@Override
 	@Transactional(readOnly = true)
@@ -67,6 +58,7 @@ public class UsuarioServiceImp implements IUsuarioService {
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<Usuario> findAllByDni(String palabraDni) {
 		if(palabraDni != null)
 		{
@@ -76,6 +68,7 @@ public class UsuarioServiceImp implements IUsuarioService {
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<Usuario> findAllByNacionalidad(String palabraNacion) {
 		if(palabraNacion != null)
 		{
@@ -85,6 +78,7 @@ public class UsuarioServiceImp implements IUsuarioService {
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public List<Usuario> findAllByFechaNacimiento(String palabraNacimiento) {
 		if(palabraNacimiento != null)
 		{
@@ -100,73 +94,5 @@ public class UsuarioServiceImp implements IUsuarioService {
 			}			
 		}
 		return null;
-	}
-
-	
-	@Override
-	public List<Usuario> findAllByDni2(String dniSt) {
-		Long dni = Long.parseLong(dniSt);
-		System.out.println(dni);
-		List<Usuario> copia = new ArrayList<>();
-		List<Usuario> encontrado = new ArrayList<>();
-		
-		copia = (List<Usuario>) usuarioDao.findAll();
-		
-		for(int i=0; i<copia.size(); i++)
-		{
-			if(copia.get(i).getDni() == dni)
-			{
-				encontrado.add(copia.get(i));
-				System.out.println(encontrado.get(i).getDni());
-			}
-		}
-		return encontrado;
-	}
-
-	@Override
-	public List<Usuario> findAllByNacionalidad2(String nacionalidadSt) {
-		List<Usuario> copia = new ArrayList<>();
-		List<Usuario> encontrado = new ArrayList<>();
-		
-		copia = (List<Usuario>) usuarioDao.findAll();
-		
-		for(int i=0; i<copia.size(); i++)
-		{
-			if(copia.get(i).getNacionalidad() == nacionalidadSt)
-			{
-				encontrado.add(copia.get(i));
-				System.out.println("ssss: " + encontrado.get(i).getNacionalidad());
-			}
-		}
-		
-		return encontrado;
-	}
-
-	@Override
-	public List<Usuario> findAllByFechaNacimiento2(String nacimientoSt) {
-		
-		SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
-		Date nacimiento = null;
-		try {
-				nacimiento = formato.parse(nacimientoSt);
-			} 
-		catch (ParseException e) {
-				e.printStackTrace();
-			}
-		
-		List<Usuario> copia = new ArrayList<>();
-		List<Usuario> encontrado = new ArrayList<>();
-		
-		copia = (List<Usuario>) usuarioDao.findAll();
-		
-		for(int i=0; i<copia.size(); i++)
-		{
-			if(copia.get(i).getFechaNacimiento() == nacimiento)
-			{
-				encontrado.add(copia.get(i));
-			}
-		}
-		
-		return encontrado;
 	}
 }

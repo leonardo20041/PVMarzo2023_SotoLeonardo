@@ -1,6 +1,7 @@
 /* Populate tables */
 INSERT INTO usuarios (dni, nombre, apellido, fecha_nacimiento, nacionalidad, contrasena, tipo_usuario) VALUES(45372772, 'Leo', 'Soto', '2004/04/28', 'Argentina', '123', 'ADMIN');
 INSERT INTO usuarios (dni, nombre, apellido, fecha_nacimiento, nacionalidad, contrasena, tipo_usuario) VALUES(45372773, 'Ariel', 'Impala', '2000/08/14', 'England', '321', 'HUESPED');
+INSERT INTO usuarios (dni, nombre, apellido, fecha_nacimiento, nacionalidad, contrasena, tipo_usuario) VALUES(45372774, 'Asss', 'Issssa', '2003/09/14', 'Argentina', '321', 'HUESPED');
 
 /* ingresar usuarios con sus roles */
 INSERT INTO users (dni, contrasena, enabled) VALUES('45372772', '$2a$10$SF9nLWNfIcN8R7C2gdsuLOvfla1KxrA.8rcfuny9kqwXSYlsdQ8O.', 1);
