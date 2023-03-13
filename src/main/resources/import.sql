@@ -1,16 +1,16 @@
 /* Precargar las habitaciones */
 INSERT INTO habitaciones (caracteristica, tipo_habitacion, cama, estado, foto) VALUES('Habitacion Regular 1', 'Regular', 'Simple', 'Libre', '/img/habRegular1.jpg')
 INSERT INTO habitaciones (caracteristica, tipo_habitacion, cama, estado, foto) VALUES('Habitacion Regular 2', 'Regular', 'Doble', 'Libre', '/img/HabRegular2.jpg')
-INSERT INTO habitaciones (caracteristica, tipo_habitacion, cama, estado, foto) VALUES('Habitacion Regular 3', 'Regular', 'Simple', 'Libre', '/img/habRegular3.jpg')
-INSERT INTO habitaciones (caracteristica, tipo_habitacion, cama, estado, foto) VALUES('Habitacion Premium 1', 'Premium', 'Doble', 'Libre', '/img/habPremium1.jpg')
+INSERT INTO habitaciones (caracteristica, tipo_habitacion, cama, estado, foto) VALUES('Habitacion Regular 3', 'Regular', 'Simple', 'Ocupado', '/img/habRegular3.jpg')
+INSERT INTO habitaciones (caracteristica, tipo_habitacion, cama, estado, foto) VALUES('Habitacion Premium 1', 'Premium', 'Doble', 'Ocupado', '/img/habPremium1.jpg')
 INSERT INTO habitaciones (caracteristica, tipo_habitacion, cama, estado, foto) VALUES('Habitacion Premium 2', 'Premium', 'Simple', 'Libre', '/img/habPremium2.jpg')
 INSERT INTO habitaciones (caracteristica, tipo_habitacion, cama, estado, foto) VALUES('Habitacion Premium 3', 'Premium', 'Simple', 'Libre', '/img/habPremium3.jpg')
 
 
 /* Populate tables */
-INSERT INTO usuarios (dni, nombre, apellido, fecha_nacimiento, nacionalidad, contrasena, tipo_usuario, habitacion_codigo) VALUES(45372772, 'Leo', 'Soto', '2004/04/28', 'Argentina', '123', 'ADMIN', 1);
-INSERT INTO usuarios (dni, nombre, apellido, fecha_nacimiento, nacionalidad, contrasena, tipo_usuario, habitacion_codigo) VALUES(45372773, 'Ariel', 'Impala', '2000/08/14', 'England', '321', 'HUESPED', 1);
-INSERT INTO usuarios (dni, nombre, apellido, fecha_nacimiento, nacionalidad, contrasena, tipo_usuario, habitacion_codigo) VALUES(45372774, 'Asss', 'Issssa', '2003/09/14', 'Argentina', '321', 'HUESPED', 6);
+INSERT INTO usuarios (dni, nombre, apellido, fecha_nacimiento, nacionalidad, contrasena, tipo_usuario, habitacion_codigo) VALUES(45372772, 'Leo', 'Soto', '2004/04/28', 'Argentina', '123', 'ADMIN', 3);
+INSERT INTO usuarios (dni, nombre, apellido, fecha_nacimiento, nacionalidad, contrasena, tipo_usuario, habitacion_codigo) VALUES(45372773, 'Ariel', 'Impala', '2000/08/14', 'England', '321', 'HUESPED', 3);
+INSERT INTO usuarios (dni, nombre, apellido, fecha_nacimiento, nacionalidad, contrasena, tipo_usuario, habitacion_codigo) VALUES(45372774, 'Asss', 'Issssa', '2003/09/14', 'Argentina', '321', 'HUESPED', 4);
 
 
 /* ingresar usuarios con sus roles */
