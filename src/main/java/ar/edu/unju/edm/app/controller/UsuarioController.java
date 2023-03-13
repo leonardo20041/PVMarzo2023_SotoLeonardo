@@ -122,6 +122,8 @@ public class UsuarioController {
 	@PostMapping("/form")
 	public String guardar(@Valid Usuario usuario, BindingResult result, Model model, SessionStatus status, RedirectAttributes flash)
 	{
+		Usuario busqueda = usuarioService.findOne(usuario.getDni());
+		
 		if(result.hasErrors())
 		{
 			model.addAttribute("titulo", "Formulario de Usuario");
@@ -131,6 +133,20 @@ public class UsuarioController {
 			logger.info("IIIIIIIIIIIIIIIIIIIIIIIIIIFFFFFFFFFFFFF");
 			return "form";
 		}
+		
+		if(busqueda != null)
+		{
+			if(usuario.getDni() == busqueda.getDni())
+			{
+				model.addAttribute("titulo", "Formulario de Usuario");
+				
+				String boton = (usuario.getDni() != null)? "Guardar Usuario" : "Crear Usuario";
+				flash.addFlashAttribute("error", "Ya existe un Usuario con este DNI");
+				model.addAttribute("botonSubmit", boton);			
+				logger.info("IGUALLLLLLLLLLLLLLLLL");
+				return "redirect:/form";
+			}
+		}			
 		
 		String mensajeFlash = (usuario.getDni() != 0)? "Usuario creado con exito" : "Usuario editado con exito";
 		logger.info("DNI ESSS:" + usuario.getDni());

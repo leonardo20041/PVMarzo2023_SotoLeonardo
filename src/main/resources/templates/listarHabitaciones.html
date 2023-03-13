@@ -47,30 +47,6 @@
 						
 					</tbody>
 				</table>
-				
-<!-- 				<table class="table table-striped table-bordered"> -->
-<!-- 					<thead> -->
-<!-- 						<tr> -->
-<!-- 							<th>Detalles</th> -->
-<!-- 							<th>Tipo</th>							 -->
-<!-- 							<th>Estado</th> -->
-<!-- 						</tr> -->
-<!-- 					</thead> -->
-					
-<!-- 					<tbody>					 -->
-<!-- 						<tr th:each="habitacion: ${habitaciones}" th:if="${habitacion.tipoHabitacion == tipoH and habitacion.estado == 'Libre'}" sec:authorize="!hasRole('ROLE_ADMIN')"> "condiciones anidadas" da error -->
-<!-- 							<td><a th:href="@{/verDetalles/} + ${habitacion.codigo}">Detalle</a></td> -->
-<!-- 							<td th:text="${habitacion.tipoHabitacion}"></td> -->
-<!-- 							<td th:text="${habitacion.estado}"></td> -->
-<!-- 						</tr> -->
-						
-<!-- 						<tr th:each="habitacionAd: ${habitaciones}" th:if="${habitacionAd.tipoHabitacion == tipoH}" sec:authorize="hasRole('ROLE_ADMIN')"> "condiciones anidadas" da error -->
-<!-- 							<td><a th:href="@{/verDetalles/} + ${habitacionAd.codigo}">Detalle</a></td> -->
-<!-- 							<td th:text="${habitacionAd.tipoHabitacion}"></td> -->
-<!-- 							<td th:text="${habitacionAd.estado}"></td> -->
-<!-- 						</tr> -->
-<!-- 					</tbody> -->
-<!-- 				</table> -->
 	</div>
 
 

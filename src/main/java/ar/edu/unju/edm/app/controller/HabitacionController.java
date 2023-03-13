@@ -17,6 +17,7 @@ public class HabitacionController {
 	@GetMapping("/listarRegular")
 	public String listarRegulares(Model model)
 	{
+		
 		model.addAttribute("titulo", "Habitaciones Regulares Disponibles");
 		model.addAttribute("habitaciones", habitacionService.findAll());
 		model.addAttribute("tipoH", "Regular");

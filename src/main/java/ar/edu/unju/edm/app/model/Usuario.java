@@ -5,7 +5,10 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -18,7 +21,7 @@ import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 @Entity
 @Table(name = "usuarios")
 public class Usuario implements Serializable {
@@ -53,6 +56,10 @@ public class Usuario implements Serializable {
 	
 	@NotEmpty
 	private String tipoUsuario;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	private Habitacion habitacion;
+	
 	
 	public Long getDni() {
 		return dni;
@@ -97,5 +104,11 @@ public class Usuario implements Serializable {
 	}
 	public void setTipoUsuario(String tipoUsuario) {
 		this.tipoUsuario = tipoUsuario;
+	}
+	public Habitacion getHabitacion() {
+		return habitacion;
+	}
+	public void setHabitacion(Habitacion habitacion) {
+		this.habitacion = habitacion;
 	}
 }
