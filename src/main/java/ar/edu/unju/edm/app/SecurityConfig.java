@@ -50,5 +50,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		build.userDetailsService(userDetailsService)		
 		.passwordEncoder(encoder);
 	}
-//		4. Encripta la contraseña de los users
+
 }

@@ -175,6 +175,7 @@ public class UsuarioController {
 			return "redirect:/listarUsuarios";
 		}
 		
+		model.addAttribute("noEditar", "noEditar");
 		model.addAttribute("usuario", usuario);
 		model.addAttribute("titulo", "Editar Usuario");
 		model.addAttribute("botonSubmit", "Guardar Usuario");
