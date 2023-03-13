@@ -187,8 +187,16 @@ public class UsuarioController {
 	{
 		if(dni > 0)
 		{
-			usuarioService.delete(dni);
-			flash.addFlashAttribute("success", "Usuario eliminado con éxito");
+			if(usuarioService.findOne(dni) != null)
+			{
+				usuarioService.delete(dni);
+				flash.addFlashAttribute("success", "Usuario eliminado con éxito");
+			}
+			else
+			{
+				flash.addFlashAttribute("error", "El Usuario no Existe");
+			}
+			
 		}
 		
 		return "redirect:/listarUsuarios";
