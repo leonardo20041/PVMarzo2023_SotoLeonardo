@@ -20,13 +20,13 @@ public class PvFebrero2023SotoLeonardoApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		String contrasena = "123";
-		
-		for(int i=0; i<2; i++)
-		{
-			String bCryptPassword = passwordEncoder.encode(contrasena);
-			System.out.println(bCryptPassword);
-		}
+//		String contrasena = "123";
+//		
+//		for(int i=0; i<2; i++)
+//		{
+//			String bCryptPassword = passwordEncoder.encode(contrasena);
+//			System.out.println(bCryptPassword);
+//		}
 		
 	}
 

@@ -10,15 +10,10 @@ import ar.edu.unju.edm.app.model.Usuario;
 
 public interface IUsuarioDAO extends CrudRepository<Usuario, Long> {
 	
-	@Query("SELECT u FROM Usuario u WHERE u.dni LIKE ?1")
 	public List<Usuario> findByDni(Long palabraDni);
 	
-	@Query("SELECT u FROM Usuario u WHERE u.nacionalidad LIKE ?1")
 	public List<Usuario> findByNacionalidad(String palabraNacion);
 	
-	@Query("SELECT u FROM Usuario u WHERE u.fechaNacimiento LIKE ?1")
 	public List<Usuario> findByFechaNacimiento(Date palabraNacimiento);
 	
-	@Query("SELECT u FROM Usuario u WHERE u.habitacion.codigo LIKE ?1")
-	public List<Usuario> findByCodigoHabitacion(Long codigo);
 }
