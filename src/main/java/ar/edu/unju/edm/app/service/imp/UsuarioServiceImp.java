@@ -35,7 +35,9 @@ public class UsuarioServiceImp implements IUsuarioService {
 	@Override
 	@Transactional
 	public void save(Usuario usuario) {
-		usuarioDao.save(usuario);
+		
+		usuarioDao.save(usuario);	
+		
 	}
 
 
@@ -51,7 +53,7 @@ public class UsuarioServiceImp implements IUsuarioService {
 		if(dniSt != null)
 		{
 			try {
-				return usuarioDao.findByDni(Long.parseLong(dniSt));	//retorna tipo long
+				return usuarioDao.findByDni(Long.parseLong(dniSt));
 			}
 			catch (NumberFormatException e) {				
 				
@@ -65,7 +67,7 @@ public class UsuarioServiceImp implements IUsuarioService {
 	public List<Usuario> findAllByNacionalidad(String nacionalidadSt) {
 		if(nacionalidadSt != null)
 		{
-			return usuarioDao.findByNacionalidad(nacionalidadSt); //retorna tipo String
+			return usuarioDao.findByNacionalidad(nacionalidadSt);
 		}
 		return null;
 	}

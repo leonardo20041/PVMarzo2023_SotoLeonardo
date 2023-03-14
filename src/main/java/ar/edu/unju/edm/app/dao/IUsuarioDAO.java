@@ -13,7 +13,7 @@ public interface IUsuarioDAO extends CrudRepository<Usuario, Long> {
 	public List<Usuario> findByDni(Long palabraDni);
 	
 	public List<Usuario> findByNacionalidad(String palabraNacion);
-	
+		
 	public List<Usuario> findByFechaNacimiento(Date palabraNacimiento);
 	
 }

@@ -111,4 +111,10 @@ public class Usuario implements Serializable {
 	public void setHabitacion(Habitacion habitacion) {
 		this.habitacion = habitacion;
 	}
+	@Override
+	public String toString() {
+		return "Usuario [dni=" + dni + ", nombre=" + nombre + ", apellido=" + apellido + ", nacionalidad="
+				+ nacionalidad + ", tipoUsuario=" + tipoUsuario + "]";
+	}
+	
 }

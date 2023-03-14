@@ -80,7 +80,6 @@ public class UsuarioController {
 		{
 			if(nacionalidadSt != "") 
 			{
-				model.addAttribute("palabraFiltrada", nacionalidadSt);
 				model.addAttribute("usuarios", usuarioService.findAllByNacionalidad(nacionalidadSt));
 			}			
 		}
@@ -122,7 +121,6 @@ public class UsuarioController {
 	@PostMapping("/form")
 	public String guardar(@Valid Usuario usuario, BindingResult result, Model model, SessionStatus status, RedirectAttributes flash)
 	{
-//		Usuario busqueda = usuarioService.findOne(usuario.getDni());
 		
 		if(result.hasErrors())
 		{
@@ -130,48 +128,70 @@ public class UsuarioController {
 			
 			String boton = (usuario.getDni() != null)? "Guardar Usuario" : "Crear Usuario";
 			model.addAttribute("botonSubmit", boton);			
-			logger.info("IIIIIIIIIIIIIIIIIIIIIIIIIIFFFFFFFFFFFFF");
 			return "form";
-		}
-		
-//		if(busqueda != null)
-//		{
-//			if(usuario.getDni() == busqueda.getDni())
-//			{
-//				model.addAttribute("titulo", "Formulario de Usuario");
-//				
-//				String boton = (usuario.getDni() != null)? "Guardar Usuario" : "Crear Usuario";
-//				flash.addFlashAttribute("error", "Ya existe un Usuario con este DNI");
-//				model.addAttribute("botonSubmit", boton);			
-//				logger.info("IGUALLLLLLLLLLLLLLLLL");
-//				return "redirect:/form";
-//			}
-//		}			
+		}		
 		
 		String mensajeFlash = (usuario.getDni() != 0)? "Usuario creado con exito" : "Usuario editado con exito";
-		logger.info("DNI ESSS:" + usuario.getDni());
-		usuarioService.save(usuario);
-		status.setComplete();		
-		flash.addFlashAttribute("success", mensajeFlash);
+				
+		Usuario existeS = usuarioService.findOne(usuario.getDni());
+		if(existeS != null) {
+			flash.addFlashAttribute("error", "Error: El DNI ya existe");
+		}
+		else {
+			usuarioService.save(usuario);
+			status.setComplete();		
+			flash.addFlashAttribute("success", mensajeFlash);	
+		}
+		
 		return "redirect:/listarUsuarios";
 	}
 	
-	@GetMapping("/form/{dni}")
-	public String editar(@PathVariable(name = "dni") Long dni, Model model, RedirectAttributes flash)
+	
+	@PostMapping("/actualizar")
+	public String actualizar(@Valid Usuario usuario, BindingResult result, Model model, SessionStatus status, RedirectAttributes flash)
 	{
-		Usuario usuario = null;
+	
+		if(result.hasErrors())
+		{
+			model.addAttribute("titulo", "Formulario de Usuario");
+			
+			String boton = (usuario.getDni() != null)? "Guardar Usuario" : "Crear Usuario";
+			model.addAttribute("botonSubmit", boton);			
+			return "form";
+		}		
+		
+		String mensajeFlash = (usuario.getDni() != 0)? "Usuario creado con exito" : "Usuario editado con exito";
+
+			usuarioService.save(usuario);
+			status.setComplete();		
+			flash.addFlashAttribute("success", mensajeFlash);	
+		
+		
+		return "redirect:/listarUsuarios";
+	}
+	
+	
+	@GetMapping("/form/{dni}")
+	public String editar(@PathVariable(name = "dni") Long dni, Usuario usuario, Model model, RedirectAttributes flash)
+	{		
+		System.out.println("USUARIUOOO" + usuario);
 		
 		if(dni > 0)
 		{
+			System.out.println("prueba 1");
 			usuario = usuarioService.findOne(dni);
+			
 			if(usuario == null) {
+				System.out.println("prueba 2");
 				flash.addFlashAttribute("error", "El DNI del usuario no existe en la Base de Datos");
 				return "redirect:/listarUsuarios";
 			}
+			
 		}
 		else
 		{
 			flash.addFlashAttribute("error", "El DNI del usuario no puede ser cero");
+			System.out.println("prueba 3");
 			return "redirect:/listarUsuarios";
 		}
 		
@@ -179,7 +199,8 @@ public class UsuarioController {
 		model.addAttribute("usuario", usuario);
 		model.addAttribute("titulo", "Editar Usuario");
 		model.addAttribute("botonSubmit", "Guardar Usuario");
-		return "form";
+		System.out.println("prueba 4" + usuario);
+		return "formActualizar";
 	}
 	
 	@GetMapping("/eliminar/{dni}")
