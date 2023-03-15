@@ -19,29 +19,9 @@ public class HabitacionServiceImp implements IHabitacionService {
 	@Autowired
 	IHabitacionDAO habitacionDao;
 	
-	@Autowired
-	IUsuarioDAO usuarioDao;
-	
 	@Override
 	@Transactional(readOnly = true)
 	public List<Habitacion> findAll() {		
-//		List<Usuario> usuarioCop = new ArrayList<>();
-//		List<Habitacion> copia = new ArrayList<>();
-//		List<Habitacion> encontrado = new ArrayList<>();
-//		
-//		usuarioCop = (List<Usuario>) usuarioDao.findAll();
-//		copia = (List<Habitacion>) habitacionDao.findAll();
-//		
-//		for(int i=0; i<copia.size(); i++)
-//		{
-//			for(int j=0; )
-//			if(copia.get(i).getCodigo() == usuarioCop.get(i).getHabitacion().getCodigo())
-//			{
-//				encontrado.add(copia.get(i));
-//			}
-//		}
-//		
-//		return encontrado;
 		return (List<Habitacion>) habitacionDao.findAll();
 	}
 
@@ -53,11 +33,5 @@ public class HabitacionServiceImp implements IHabitacionService {
 	@Override
 	public Habitacion listById(Long codigo) {
 		return habitacionDao.findById(codigo).orElse(null);
-	}
-
-	@Override
-	public List<Habitacion> findAllByEstado(Long codigo) {
-		
-		return null;
 	}
 }

@@ -27,7 +27,6 @@ public class Habitacion implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@NotNull
-//	@Nullable
 	private Long codigo;
 	
 	@NotEmpty
